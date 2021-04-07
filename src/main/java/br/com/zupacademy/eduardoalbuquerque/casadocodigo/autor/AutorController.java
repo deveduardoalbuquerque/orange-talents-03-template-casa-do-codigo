@@ -1,7 +1,6 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor;
 
 import br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor.erros.EmailDuplicado;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class AutorController {
     }
 
     @PostMapping
-    public void salvarAutor(@RequestBody @Valid AutorRequest autorRequest) throws MethodArgumentNotValidException{
+    public void salvarAutor(@RequestBody @Valid AutorRequest autorRequest) {
 
         if(repository.existsByEmail(autorRequest.getEmail())){
             throw new EmailDuplicado("Email já cadastrado para um outro Autor(a)!");
