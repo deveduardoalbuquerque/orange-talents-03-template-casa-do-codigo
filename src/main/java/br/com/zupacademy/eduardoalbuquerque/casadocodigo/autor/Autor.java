@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 @Entity
 public class Autor {
@@ -19,35 +20,22 @@ public class Autor {
     @Column(nullable = false, length = 400)
     private String descricao;
 
-    @Column(nullable = false) @CreationTimestamp
+    @Column(nullable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();
 
     public Autor(String nome, String email, String descricao) {
         this.nome = nome;
-        this.email = email;
+        this.setEmail(email);
         this.descricao = descricao;
     }
 
     public Autor() {
     }
 
-    public Long getId() {
-        return id;
+    //garante a entrada de dados em  minúsculo
+    public void setEmail(String email) {
+        this.email = email.toLowerCase(Locale.ROOT);
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
 }
