@@ -1,13 +1,11 @@
-package br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor.erros;
+package br.com.zupacademy.eduardoalbuquerque.casadocodigo.apierrors;
 
-import org.springframework.validation.FieldError;
-
-public class AutorErrosDto {
+public class ErrosResponseDto {
 
     private String campo;
     private String mensagem;
 
-    public AutorErrosDto(String campo, String mensagem) {
+    public ErrosResponseDto(String campo, String mensagem) {
         this.campo = campo;
         this.mensagem = mensagem;
     }

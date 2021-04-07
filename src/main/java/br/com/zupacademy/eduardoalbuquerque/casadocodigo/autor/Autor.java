@@ -14,7 +14,7 @@ public class Autor {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false, length = 400)
@@ -38,4 +38,23 @@ public class Autor {
         this.email = email.toLowerCase(Locale.ROOT);
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 }
