@@ -1,11 +1,8 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
 public class AutorRequest {
 
