@@ -1,7 +1,7 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.apierrors;
 
-import br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor.erros.EmailDuplicado;
-import br.com.zupacademy.eduardoalbuquerque.casadocodigo.categoria.erros.CategoriaDuplicada;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -15,31 +15,26 @@ import java.util.List;
 @RestControllerAdvice
 public class ErrosHandle {
 
+    private MessageSource messageSource;
+
+    public ErrosHandle(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public List<ErrosResponseDto> autorValidationError(MethodArgumentNotValidException ex){
 
         List<ErrosResponseDto> erros = new ArrayList<>();
-        List<FieldError> errorList = ex.getFieldErrors();
+        List<FieldError> errorList = ex.getBindingResult().getFieldErrors();
 
-        errorList.forEach(e->erros.add(new ErrosResponseDto(e.getField(),e.getDefaultMessage())));
+        errorList.forEach(e->{
+                    String message = messageSource.getMessage(e,LocaleContextHolder.getLocale());
+                    erros.add(new ErrosResponseDto(e.getField(),message));
+                });
 
         return erros;
 
     }
-
-    @ExceptionHandler(EmailDuplicado.class)
-    public ErrosResponseDto emailDuplicado(EmailDuplicado ex){
-
-        return new ErrosResponseDto("email",ex.getMessage());
-
-    }
-
-    @ExceptionHandler(CategoriaDuplicada.class)
-    public ErrosResponseDto categoriaDuplicada(CategoriaDuplicada ex){
-        return new ErrosResponseDto("Categoria",ex.getMessage());
-    }
-
-
 
 }

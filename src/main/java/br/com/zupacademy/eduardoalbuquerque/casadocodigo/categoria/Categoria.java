@@ -1,5 +1,7 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.categoria;
 
+import br.com.zupacademy.eduardoalbuquerque.casadocodigo.validator.VerificaCampoDuplicado;
+
 import javax.persistence.*;
 
 @Entity

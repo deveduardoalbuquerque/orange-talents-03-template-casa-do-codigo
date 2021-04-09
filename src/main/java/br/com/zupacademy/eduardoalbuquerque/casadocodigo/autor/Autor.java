@@ -1,6 +1,7 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ public class Autor {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)//, unique = true)
     private String email;
 
     @Column(nullable = false, length = 400)
@@ -23,6 +24,7 @@ public class Autor {
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();
+
 
     public Autor(String nome, String email, String descricao) {
         this.nome = nome;
