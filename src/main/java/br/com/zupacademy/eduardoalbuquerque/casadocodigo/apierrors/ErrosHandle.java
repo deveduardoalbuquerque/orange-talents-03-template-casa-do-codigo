@@ -17,6 +17,7 @@ public class ErrosHandle {
 
     private MessageSource messageSource;
 
+
     public ErrosHandle(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
@@ -26,6 +27,7 @@ public class ErrosHandle {
     public List<ErrosResponseDto> autorValidationError(MethodArgumentNotValidException ex){
 
         List<ErrosResponseDto> erros = new ArrayList<>();
+
         List<FieldError> errorList = ex.getBindingResult().getFieldErrors();
 
         errorList.forEach(e->{
@@ -34,6 +36,16 @@ public class ErrosHandle {
                 });
 
         return erros;
+
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CategoriaOuAutorNaoEncontrado.class)
+    public ErrosResponseDto CategoriaOuAutorNaoEncontrado(CategoriaOuAutorNaoEncontrado ex){
+
+        ErrosResponseDto erro;
+        erro = new ErrosResponseDto("Categoria ID ou Autor ID", "Id(s) não encontrado!");
+        return erro;
 
     }
 

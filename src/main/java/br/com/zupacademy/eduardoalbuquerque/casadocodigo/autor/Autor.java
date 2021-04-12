@@ -1,16 +1,18 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor;
 
+import br.com.zupacademy.eduardoalbuquerque.casadocodigo.validator.Groups;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Locale;
 
 @Entity
 public class Autor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @NotNull(groups = Groups.Autor.class)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String nome;

@@ -1,12 +1,14 @@
 package br.com.zupacademy.eduardoalbuquerque.casadocodigo.categoria;
 
-import br.com.zupacademy.eduardoalbuquerque.casadocodigo.validator.VerificaCampoDuplicado;
+import br.com.zupacademy.eduardoalbuquerque.casadocodigo.validator.Groups;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Categoria {
 
+    @NotNull (groups = Groups.Categoria.class)
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
