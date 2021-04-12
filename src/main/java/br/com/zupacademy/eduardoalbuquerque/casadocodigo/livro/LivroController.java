@@ -6,13 +6,13 @@ import br.com.zupacademy.eduardoalbuquerque.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.eduardoalbuquerque.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.eduardoalbuquerque.casadocodigo.categoria.CategoriaRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/livros")
@@ -44,6 +44,12 @@ public class LivroController {
 
         throw new CategoriaOuAutorNaoEncontrado("Id da Categoria ou do Autor nao encontrado!");
 
+    }
+
+    @GetMapping
+    public List<LivroResponse> listarTodos(){
+        LivroResponse livroResponse = new LivroResponse();
+        return livroResponse.toLivroResponse(repository.findAll());
     }
 
 }
