@@ -14,6 +14,8 @@ public class Livro {
     private Long id;
     @Column(nullable = false, unique = true)
     private String titulo;
+    @Column(nullable = false)
+    private String subTitulo;
     @Column(nullable = false, length = 500)
     private String resumo;
     @Column(columnDefinition = "text null")
@@ -33,10 +35,12 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(String titulo, String resumo, String sumario, BigDecimal preco,
-                 Integer paginas, String isbn, LocalDate dataPublicacao,
+    public Livro(String titulo, String subTitulo, String resumo,
+                 String sumario, BigDecimal preco, Integer paginas,
+                 String isbn, LocalDate dataPublicacao,
                  Categoria categoria, Autor autor) {
         this.titulo = titulo;
+        this.subTitulo = subTitulo;
         this.resumo = resumo;
         this.sumario = sumario;
         this.preco = preco;
@@ -55,6 +59,10 @@ public class Livro {
         return titulo;
     }
 
+    public String getSubTitulo() {
+        return subTitulo;
+    }
+
     public String getResumo() {
         return resumo;
     }
@@ -67,7 +75,7 @@ public class Livro {
         return preco;
     }
 
-    public Integer getPginas() {
+    public Integer getPaginas() {
         return paginas;
     }
 

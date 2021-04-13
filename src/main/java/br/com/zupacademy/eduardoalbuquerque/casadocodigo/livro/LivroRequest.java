@@ -19,6 +19,9 @@ public class LivroRequest {
     @VerificaCampoDuplicado(attribute = "titulo", clazz = Livro.class)
     private String titulo;
 
+    @NotBlank
+    private String subTitulo;
+
     @NotBlank @Size(max = 500)
     private String resumo;
 
@@ -46,6 +49,7 @@ public class LivroRequest {
     @NotNull
     @ConvertGroup(from = Default.class, to = Groups.Autor.class)
     private Autor autor;
+
 
     public LivroRequest(String titulo, String resumo, String sumario, BigDecimal preco,
                         Integer nPaginas, String isbn, LocalDate dataPublicacao,
@@ -97,10 +101,13 @@ public class LivroRequest {
         return autor;
     }
 
+    public String getSubTitulo() {
+        return subTitulo;
+    }
 
     public Livro toLivro(Categoria categoria, Autor autor){
 
-        return new Livro(this.titulo,this.resumo,this.sumario,this.preco,this.nPaginas,
+        return new Livro(this.titulo,this.subTitulo, this.resumo,this.sumario,this.preco,this.nPaginas,
                     this.isbn,this.dataPublicacao,categoria,autor);
 
     }
