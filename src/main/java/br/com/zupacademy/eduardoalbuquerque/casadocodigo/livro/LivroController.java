@@ -33,12 +33,12 @@ public class LivroController {
     }
 
     @PostMapping
-    public ResponseEntity<?> salvarLivro(@RequestBody @Valid LivroRequest livroRequest) throws Exception {
+    public ResponseEntity<?> salvarLivro(@RequestBody @Valid LivroRequest livroRequest)  {
 
+        //verificar a categoria
         Optional<Categoria> categoria = categoriaRepository.findById(livroRequest.getCategoria().getId());
         Optional<Autor> autor = autorRepository.findById(livroRequest.getAutor().getId());
         if(categoria.isPresent() && autor.isPresent()){
-
             return ResponseEntity.ok(repository.save(livroRequest.toLivro(categoria.get(),autor.get())));
         }
 
