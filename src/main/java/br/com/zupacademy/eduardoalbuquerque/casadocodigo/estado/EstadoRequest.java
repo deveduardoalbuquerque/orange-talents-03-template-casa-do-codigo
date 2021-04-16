@@ -13,6 +13,7 @@ public class EstadoRequest {
 
     @NotBlank
     private String nome;
+
     @Valid
     @ConvertGroup(from = Default.class, to = Groups.Pais.class)
     @NotNull

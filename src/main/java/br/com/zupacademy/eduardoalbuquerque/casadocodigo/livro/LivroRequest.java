@@ -41,7 +41,7 @@ public class LivroRequest {
     private LocalDate dataPublicacao;
 
     @Valid
-    @NotNull
+    @NotNull //Classe Categoria
     @ConvertGroup(from = Default.class, to = Groups.Categoria.class)
     private Categoria categoria;
 
